@@ -20,8 +20,6 @@ public class TileCellSugoroku : MonoBehaviour
 {
 	[SerializeField] private List<TileRelation> relations = new List<TileRelation>();
 
-	[SerializeField] internal List<TileCellSugoroku> borderOnTiles;
-
 	public int needStep = 1;
 	public int nowStep = -1;
 
@@ -63,12 +61,12 @@ public class TileCellSugoroku : MonoBehaviour
 			enableEffect.SetActive(true);
 		}
 
-		foreach (var tile in borderOnTiles)
+		foreach (var relation in relations)
 		{
-			if (IsMovable(tile))
+			if (IsMovable(relation.toTile))
 			{
-				var nextStepCount = count - tile.needStep;
-				tile.SetStep(nextStepCount);
+				var nextStepCount = count - relation.toTile.needStep;
+				relation.toTile.SetStep(nextStepCount);
 
 
 			}
@@ -77,7 +75,6 @@ public class TileCellSugoroku : MonoBehaviour
 
 	public void SetRelation(List<TileCellSugoroku> cells)
 	{
-		borderOnTiles = new List<TileCellSugoroku>();
 		relations = new List<TileRelation>();
 
 		foreach (var cell in cells)
@@ -90,7 +87,6 @@ public class TileCellSugoroku : MonoBehaviour
 			float distance = Vector3.Distance(cell.transform.position, this.transform.position);
 			if (distance < 1.1f)
 			{
-				borderOnTiles.Add(cell);
 				relations.Add(new TileRelation(cell));
 			}
 		}
