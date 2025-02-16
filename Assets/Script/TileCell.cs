@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
 
 public class TileCell : MonoBehaviour
 {
@@ -12,14 +12,8 @@ public class TileCell : MonoBehaviour
 	public int needStep = 1;
 	public int nowStep = -1;
 
-	[SerializeField] internal TextMesh number;
+	[SerializeField] internal TextMeshProUGUI number;
 	[SerializeField] internal GameObject enableEffect;
-
-	// Start is called before the first frame update
-	private void Start()
-	{
-
-	}
 
 	public virtual void SetStep(int count)
 	{
@@ -28,10 +22,14 @@ public class TileCell : MonoBehaviour
 			return;
 		}
 
-		number.text = count.ToString();
+		if (number != null)
+		{
+			number.text = count.ToString();
+		}
+
 		nowStep = count;
 
-		enableEffect.SetActive(true);
+		enableEffect?.SetActive(true);
 
 		foreach (var tile in borderOnTiles)
 		{

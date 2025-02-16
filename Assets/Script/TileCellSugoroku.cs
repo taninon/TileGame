@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -23,7 +24,7 @@ public class TileCellSugoroku : MonoBehaviour
 	public int needStep = 1;
 	public int nowStep = -1;
 
-	[SerializeField] internal TextMesh number;
+	[SerializeField] internal TextMeshProUGUI number;
 	[SerializeField] internal GameObject enableEffect;
 
 
@@ -58,7 +59,7 @@ public class TileCellSugoroku : MonoBehaviour
 
 		if (nowStep == 0)
 		{
-			enableEffect.SetActive(true);
+			enableEffect?.SetActive(true);
 		}
 
 		foreach (var relation in relations)
@@ -67,8 +68,6 @@ public class TileCellSugoroku : MonoBehaviour
 			{
 				var nextStepCount = count - relation.toTile.needStep;
 				relation.toTile.SetStep(nextStepCount);
-
-
 			}
 		}
 	}
@@ -92,7 +91,6 @@ public class TileCellSugoroku : MonoBehaviour
 		}
 
 		enableEffect = transform.Find("Plane").gameObject;
-		number = GetComponentInChildren<TextMesh>();
 	}
 
 	public void OnMouseDown()
