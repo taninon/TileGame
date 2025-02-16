@@ -24,7 +24,7 @@ public class TileCellSugoroku : MonoBehaviour
 	public int needStep = 1;
 	public int nowStep = -1;
 
-	[SerializeField] internal TextMeshProUGUI number;
+	[SerializeField] internal TextMeshPro number;
 	[SerializeField] internal GameObject enableEffect;
 
 

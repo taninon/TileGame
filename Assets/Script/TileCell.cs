@@ -12,7 +12,7 @@ public class TileCell : MonoBehaviour
 	public int needStep = 1;
 	public int nowStep = -1;
 
-	[SerializeField] internal TextMeshProUGUI number;
+	[SerializeField] internal TextMeshPro number;
 	[SerializeField] internal GameObject enableEffect;
 
 	public virtual void SetStep(int count)
